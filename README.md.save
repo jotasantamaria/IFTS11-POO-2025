@@ -1,0 +1,38 @@
+# Ejercicios de Programación Orientada a Objetos (POO) en Python
+
+Este repositorio contiene una colección de ejercicios prácticos realizados durante el curso de Programación Orientada a Objetos (POO). Cada archivo está pensado para reforzar conceptos clave como clases, objetos, herencia, polimorfismo, encapsulamiento y manejo de excepciones.
+
+## 📁 Estructura del proyecto
+
+Los archivos están organizados por fechas y temas trabajados en clase. Algunos ejemplos:
+
+* `DOO_Ejercicio_250319_clase.py`: Introducción a clases y objetos
+* `DOO_Ejercicio_250326_clase_Perro.py`: Ejemplo de creación de clases simples
+* `DOO_Ejercicio_250409_ExcepcionesCustomError.py`: Manejo de errores y excepciones personalizadas
+* `TP_final.py`: Trabajo práctico integrador
+
+## ⚙️ Tecnologías
+
+* Python 3.x
+* Editor recomendado: VSCode, PyCharm, o cualquier IDE para Python
+
+## 📌 Objetivo
+
+Reforzar los conocimientos de POO a través de ejemplos prácticos, que pueden servir como base para proyectos más complejos.
+
+## ✨ Temas abordados
+
+* Clases y objetos
+* Atributos y métodos
+* Métodos especiales (`__init__`, `__str__`, etc.)
+* Herencia y polimorfismo
+* Excepciones personalizadas
+* Composición de objetos
+
+## 📝 Notas
+
+Este repositorio se irá actualizando a medida que se avanza en la cursada.
+
+---
+
+Hecho con ☕ ³+💻+🫠 por [Julia Santamaría](https://github.com/jotasantamaria)# Ejercicios de Programación Orientada a Objetos en Python

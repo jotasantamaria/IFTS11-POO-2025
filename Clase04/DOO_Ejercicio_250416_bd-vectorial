@@ -1,0 +1,70 @@
+import os
+os.system('clear')
+
+import math
+
+def cosine_similarity(a: list[float], b: list[float]) -> float:
+    """
+    Calcula la similitud coseno entre dos vectores.
+    """
+    if len(a) != len(b):
+        raise ValueError("Los vectores deben tener la misma longitud")
+    
+    dot_product = sum(x * y for x, y in zip(a, b))
+    norm_a = math.sqrt(sum(x ** 2 for x in a))
+    norm_b = math.sqrt(sum(y ** 2 for y in b))
+    
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+    
+    return dot_product / (norm_a * norm_b) 
+
+
+class Embedding(object):
+    def __init__(self, vector, metadata):
+        self.vector = vector
+        self.metadata = metadata
+
+    def size(self):
+        return len(self.vector)
+    def get_metadata(self):
+        return self.metadata
+
+class DB(object):
+    def __init__(self,dims):
+        self.dims = dims
+        self.embeddings = []
+        #self.metadata = []
+        #self.vector = []
+
+
+    def insert(self, embedding):
+        if self.dims == embedding.size():
+            self.embeddings.append(embedding) #append es un método en esta caso, del vector #la otra forma es: self.embedding self.embedding + [embedding] // en este caso agregamos un elemento a la lista con el concatenador
+        else:
+            raise ValueError("El embedding no tiene la dimensión correcta")
+   
+    
+
+    def save(self):
+        pass
+
+    def load(self):
+        pass
+
+
+e = Embedding([1.3,2.3,3.0], "Esto es metadata op1")
+f = Embedding([1.3,2.3,3.0], "Esto es metadata op2") # si no tuviera alguna de los valores ej: Embedding([4,5]) arrojaría error.
+db = DB(3)
+db.insert(e)
+db.insert(f)
+
+resultado = cosine_similarity(e.vector, f.vector)
+print ( "El resultado de la similitud coseno es: ", resultado)
+
+
+print(e.size())
+print(e.get_metadata())
+
+print(dir (e))
+

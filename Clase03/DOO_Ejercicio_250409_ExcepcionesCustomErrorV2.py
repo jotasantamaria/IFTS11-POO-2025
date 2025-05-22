@@ -28,3 +28,4 @@ except HambreException as e:
     print(e)
     print("\n📦 Contenido de e.__dict__:")
     print(e.__dict__)
+

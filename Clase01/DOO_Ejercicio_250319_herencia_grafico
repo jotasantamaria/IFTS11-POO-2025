@@ -1,0 +1,29 @@
+import os
+os.system('clear')
+
+import matplotlib.pyplot as plt #aprovecho para instalar matplotlib desde la terminal :) el gráfico ressulta medio pobre pero sirvió el ejercicio
+import networkx as nx
+
+# Creamos el grafo
+G = nx.DiGraph()
+
+# Relaciones de herencia e instanciación
+G.add_edge("object", "Perro")
+G.add_edge("Perro", "champi")
+
+# Posiciones y estilo 
+pos = nx.spring_layout(G, seed=42)
+nx.draw(
+    G, pos,
+    with_labels=True,
+    node_size=3000,
+    node_color="#90caf9",
+    font_size=10,
+    font_weight="bold",
+    arrows=True
+)
+
+plt.title("Herencia e instanciación en Python")
+plt.show()
+
+

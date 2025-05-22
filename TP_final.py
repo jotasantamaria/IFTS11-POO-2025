@@ -51,4 +51,26 @@ class Usuario:
         print(f"Correo: {self.correo}")
         print(f"ID: {self.id}")
         print("::::::::::::::::::::::::::::::::::::")
-        
+
+"""class Perro:
+    nombre = nombre
+    raza = raza
+    edad = edad
+    tamaño = tamaño
+    peso = peso
+    estado_salud = estado_salud
+    vacunado = vacunado
+    estado = estado
+    temperamento = temperamento
+    id = id
+    def __init__(self, nombre, raza, edad, tamaño, peso, estsdo_salud, vacunado, estado('disponible','reservado','adoptado'), temperamento, id):
+        self.nombre = nombre
+        self.raza = raza
+        self.edad = edad
+        self.tamaño = tamaño
+        self.peso = peso
+        self.estado_salud = estado_salud
+        self.vacunado = vacunado
+        self.estado = estado
+        self.temperamento = temperamento
+        self.id = id"""

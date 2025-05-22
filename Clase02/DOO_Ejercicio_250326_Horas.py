@@ -29,7 +29,7 @@ class Horas:
         return Horas(horas, minutos, segundos)
     
     def restar(self, hora2):
-        total1 = hora1.horas * 3600 + hora1.minutos * 60 + hora1.segundos
+        total1 = self.horas * 3600 + self.minutos * 60 + self.segundos
         total2 = hora2.horas * 3600 + hora2.minutos * 60 + hora2.segundos
 
         diferencia = abs(total1 - total2) #uso el abs porque el cálculo es la diferencia entre una hora y otra. si la primera es menor no me sirve que el resultado sea negativo.
