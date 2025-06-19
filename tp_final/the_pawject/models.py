@@ -77,6 +77,13 @@ class Animal(models.Model):
         ('adoptado', 'Adoptado'),
     ]
 
+    ESTADO_SALUD_CHOICES = [
+        ('sano', 'Sano'),
+        ('en_tratamiento', 'En tratamiento'),
+        ('enfermo', 'Enfermo'),
+    ]
+
+
     ESTADO_MKTG_CHOICES = [
         ('normal', 'Normal'),
         ('nuevo_ingreso', 'Nuevo ingreso'),
@@ -90,6 +97,12 @@ class Animal(models.Model):
         ('alimentaria', 'Alimentaria'),
         ('picadura', 'Picaduras'),
         ('otro', 'Otro'),
+    ]
+
+    TEMPERAMENTO_CHOICES = [
+        ('tranquilo', 'Tranquilo'),
+        ('activo', 'Activo'),
+        ('agresivo', 'Agresivo'),
     ]
 
     CONDICION_CHOICES = [
@@ -106,11 +119,11 @@ class Animal(models.Model):
     fecha_nacimiento = models.DateField()
     tamaño = models.CharField(max_length=10, choices=TAMAÑO_CHOICES)
     peso = models.FloatField()  # admite decimales
-    estado_salud = models.CharField(max_length=100)
+    estado_salud = models.CharField(max_length=20, choices=ESTADO_SALUD_CHOICES)
     vacunado = models.BooleanField(default=False)
     estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='disponible')
     estado_mktg = models.CharField(max_length=20, choices=ESTADO_MKTG_CHOICES, default='normal')
-    temperamento = models.CharField(max_length=100)
+    temperamento = models.CharField(max_length=20, choices=TEMPERAMENTO_CHOICES)
     marketing = models.TextField(blank=True)
     pelaje = models.CharField(max_length=20, choices=PELAJE_CHOICES, blank=True, null=True)
     color = models.CharField(max_length=20, choices=COLOR_CHOICES, blank=True, null=True)
