@@ -36,3 +36,23 @@ class Refugio:
             print(f"Animales en el refugio {self.nombre}:")
             for a in self.animales:
                 print(f"- {a.nombre} ({a.especie}, {a.edad} años, {a.tamaño})")
+
+    def porcentaje_ocupacion(self):
+        if self.capacidad == 0:
+            return 0
+        return (len(self.animales) / self.capacidad) * 100
+    
+    def resumen_ocupacion(self):
+        print(f"{self.nombre} - {len(self.animales)}/{self.capacidad} plazas ocupadas ({self.porcentaje_ocupacion():.1f}%)")
+    
+    def __str__(self):
+        return f"{self.nombre} ({self.localidad}) - {len(self.animales)}/{self.capacidad} plazas ocupadas"
+
+    @staticmethod
+    def asignar_a_refugio_disponible(animal, lista_refugios):
+        for refugio in lista_refugios:
+            if refugio.plazas_disponibles() > 0:
+                refugio.agregar_animal(animal)
+                return refugio
+        print(f"No hay refugios con plazas disponibles para {animal.nombre}.")
+        return None
