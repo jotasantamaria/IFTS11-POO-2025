@@ -1,5 +1,6 @@
+```text
 # Ejercicios de Programación Orientada a Objetos en Python
-# Proyecto: Sistema de Adopción de Animales - Python Orientado a Objetos
+## Proyecto: Sistema de Adopción de Animales - Python Orientado a Objetos
 
 Este proyecto contiene el desarrollo de un sistema para gestionar la adopción de animales, implementado en Python con un enfoque orientado a objetos. Incluye clases para representar animales, refugios, hogares de tránsito, usuarios y un sistema central que coordina todo.
 
@@ -71,3 +72,4 @@ Este proyecto contiene el desarrollo de un sistema para gestionar la adopción d
    │   └── js/
    │
    └── media/                  ← Para archivos subidos (como imágenes)
+```
