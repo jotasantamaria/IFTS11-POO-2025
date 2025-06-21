@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crear Hogar de Tránsito</title>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete"
+    async defer>
+  </script>
+  <style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #f9f9f9; color: #333; }
+    form { max-width: 600px; margin: 30px auto; background: white; padding: 20px; border-radius: 6px; box-shadow: 0 0 5px #ccc; }
+    label { display: block; margin-top: 15px; font-weight: 600; }
+    input[type="text"], input[type="number"] { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 3px; }
+    button { margin-top: 20px; padding: 10px 20px; background: #d05a2d; color: white; border: none; border-radius: 3px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="{{ form.nombre.id_for_label }}">Nombre</label>
+    {{ form.nombre }}
+
+    <label for="id_direccion">Dirección</label>
+    <input type="text" id="id_direccion" name="direccion" />
+
+    <label for="{{ form.localidad.id_for_label }}">Localidad</label>
+    {{ form.localidad }}
+
+    <label for="{{ form.capacidad.id_for_label }}">Capacidad</label>
+    {{ form.capacidad }}
+
+    <button type="submit">Crear Hogar de Tránsito</button>
+  </form>
+
+  <script>
+    function initAutocomplete() {
+      const input = document.getElementById('id_direccion');
+      const autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ['address'],
+        componentRestrictions: { country: "ar" }
+      });
+    }
+  </script>
+
+</body>
+</html>

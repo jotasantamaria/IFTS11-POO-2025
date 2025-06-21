@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Refugio - Adopción Animal</title>
+
+  <!-- Fuentes -->
+  <link href="AIzaSyAxhRIfA3xN7BdrWRQxXOCKm6WySL1GxCk" rel="stylesheet" />
+
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header, footer {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 2rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    header {
+      border-bottom: 1px solid #e0b089; /* acento cálido */
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #b45a33;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      margin-top: auto;
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: #b45a33;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: block;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="search"] {
+      padding: 0.5rem 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="search"]:focus {
+      border-color: #b45a33;
+      outline: none;
+      box-shadow: 0 0 5px rgba(180, 90, 51, 0.4);
+    }
+
+    button {
+      background-color: #b45a33;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-family: 'Inter', sans-serif;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #924726;
+    }
+  </style>
+
+</head>
+<body>
+
+<header>
+  Adopción Animal - Gestión de Refugios
+</header>
+
+<main>
+  <h1>Formulario Refugio</h1>
+  <form id="refugio-form">
+    <div>
+      <label for="nombre">Nombre del Refugio</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ej: Refugio Buenos Aires" required />
+    </div>
+    <div>
+      <label for="localidad">Localidad</label>
+      <input
+        id="localidad"
+        name="localidad"
+        type="search"
+        placeholder="Comenzá a escribir para autocompletar..."
+        autocomplete="off"
+        required
+      />
+    </div>
+    <div>
+      <label for="codigo_postal">Código Postal</label>
+      <input type="text" id="codigo_postal" name="codigo_postal" placeholder="Ej: 1425" pattern="[0-9]{4,5}" />
+    </div>
+    <div>
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" name="direccion" placeholder="Ej: Calle Falsa 123" />
+    </div>
+    <button type="submit">Guardar Refugio</button>
+  </form>
+</main>
+
+<footer>
+  &copy; 2025 Adopción Animal. Lorem ipsum dolor sit amet, consectetur adipisci

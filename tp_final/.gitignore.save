@@ -42,5 +42,5 @@ coverage.xml
 
 # dotenv environment variables file
 .env
-.env
+
 
