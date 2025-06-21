@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date, timedelta
 
+
 class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -76,6 +77,9 @@ class Animal(models.Model):
         ('gris', 'Gris'),
         ('atigrado', 'Atigrado'),
         ('marron', 'Marrón'),
+        ('negro y blanco', 'Negro y Blanco'),
+        ('marron y blanco', 'Marrón y Blanco'),
+        ('marron y negro', 'Marrón y Negro'),
     ]
 
     ESTADO_CHOICES = [
@@ -148,6 +152,7 @@ class Animal(models.Model):
     condiciones_texto = models.TextField(blank=True)
 
     notas = models.TextField(blank=True)
+    vinculados = models.ManyToManyField("self", blank=True, symmetrical=True, related_name="grupo_de")
 
     def __str__(self):
         return f"{self.nombre} ({self.especie})"
