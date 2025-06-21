@@ -6,6 +6,7 @@ class Usuario(models.Model):
     email = models.EmailField(unique=True)
     localidad = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20, blank=True, null=True)
+    direccion = models.CharField(max_length=255, blank=True, null=True)  # <-- Agregado
     preferencias = models.JSONField(default=dict, blank=True)  # Preferencias de adopción
     animales_adoptados = models.ManyToManyField('Animal', blank=True)
 

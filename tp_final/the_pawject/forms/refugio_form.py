@@ -9,7 +9,7 @@ class RefugioForm(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'direccion': forms.TextInput(attrs={
                 'class': 'form-control',
-                'id': 'id_direccion',  # Para usar con autocompletado de Google Maps
+                'id': 'id_direccion',  # útil para autocompletado con Google Maps
                 'placeholder': 'Ej. Av. Siempreviva 742'
             }),
             'localidad': forms.TextInput(attrs={'class': 'form-control'}),

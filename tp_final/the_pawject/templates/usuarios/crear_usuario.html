@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Usuario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 p-4 bg-white shadow rounded">
+        <h2 class="mb-4">Crear nuevo usuario</h2>
+
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+
+    <script>
+      function initAutocomplete() {
+        const input = document.getElementById("id_direccion"); // Cambiar al id del campo dirección
+        if (input) {
+          const autocomplete = new google.maps.places.Autocomplete(input, {
+            types: ['geocode'], // Otras opciones: 'establishment', 'address', etc.
+            componentRestrictions: { country: "ar" } // Opcional, restringir a Argentina
+          });
+        }
+      }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete" async defer></script>
+</body>
+</html>
