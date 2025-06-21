@@ -52,6 +52,12 @@ class Animal(models.Model):
         ('grande', 'Grande'),
     ]
 
+    SEXO_CHOICES = [
+    ('macho', 'Macho'),
+    ('hembra', 'Hembra'),
+    ('desconocido', 'Desconocido'),
+    ]
+
     PELAJE_CHOICES = [
         ('corto', 'Corto'),
         ('medio', 'Medio'),
@@ -117,6 +123,7 @@ class Animal(models.Model):
     especie = models.CharField(max_length=10, choices=ESPECIE_CHOICES)
     nombre = models.CharField(max_length=100)
     raza = models.CharField(max_length=100)
+    sexo = models.CharField(max_length=15, choices=SEXO_CHOICES, default='desconocido')
     fecha_nacimiento = models.DateField()
     tamaño = models.CharField(max_length=10, choices=TAMAÑO_CHOICES)
     peso = models.FloatField()  # admite decimales
