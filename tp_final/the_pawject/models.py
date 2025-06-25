@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 from datetime import date, timedelta
 
 
@@ -11,9 +13,9 @@ class Usuario(models.Model):
     preferencias = models.JSONField(default=dict, blank=True)  # Preferencias de adopción
     animales_adoptados = models.ManyToManyField('Animal', blank=True)
 
+
     def __str__(self):
         return self.nombre
-
 
 class Refugio(models.Model):
     nombre = models.CharField(max_length=100)
@@ -167,6 +169,7 @@ class Animal(models.Model):
         ('otro', 'Otro'),
     ]
 
+
     especie = models.CharField(max_length=10, choices=ESPECIE_CHOICES)
     nombre = models.CharField(max_length=100)
     raza = models.CharField(max_length=100)
@@ -229,3 +232,32 @@ class FotoRefugio(models.Model):
 
     def __str__(self):
         return f"Foto del refugio {self.refugio.nombre}"
+
+class PreferenciasUsuario(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    especie = models.CharField(max_length=30, choices=Animal.ESPECIE_CHOICES, blank=True, null=True)
+    tamano = models.CharField(max_length=30, choices=Animal.TAMAÑO_CHOICES, blank=True, null=True)
+    sexo = models.CharField(max_length=30, choices=Animal.SEXO_CHOICES, blank=True, null=True)
+    pelaje = models.CharField(max_length=30, choices=Animal.PELAJE_CHOICES, blank=True, null=True)
+    color = models.CharField(max_length=30, choices=Animal.COLOR_CHOICES, blank=True, null=True)
+    estado_salud = models.CharField(max_length=30, choices=Animal.ESTADO_SALUD_CHOICES, blank=True, null=True)
+    temperamento = models.CharField(max_length=30, choices=Animal.TEMPERAMENTO_CHOICES, blank=True, null=True)
+
+    CONDICIONES_SALUD_PREF_CHOICES = [
+        ('no_importa', 'No es relevante'),
+        ('sano', 'Sano / Sin condiciones'),
+        ('con_condiciones', 'Con condiciones de salud'),
+    ]
+
+    condiciones_salud = models.CharField(
+        max_length=20,
+        choices=CONDICIONES_SALUD_PREF_CHOICES,
+        blank=True,
+        null=True,
+        default='no_importa'
+    )
+
+    def __str__(self):
+        return f"Preferencias de {self.usuario.username}"
+
+

@@ -3,49 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <title>Crear Refugio</title>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete"
-    async defer>
-  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete" async defer></script>
   <style>
     body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #f9f9f9; color: #333; }
     form { max-width: 600px; margin: 30px auto; background: white; padding: 20px; border-radius: 6px; box-shadow: 0 0 5px #ccc; }
     label { display: block; margin-top: 15px; font-weight: 600; }
     input[type="text"], input[type="number"] { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 3px; }
     button { margin-top: 20px; padding: 10px 20px; background: #d05a2d; color: white; border: none; border-radius: 3px; cursor: pointer; }
+    nav { background: #f0f0f0; padding: 10px; text-align: center; }
+    nav a { margin: 0 10px; color: #d05a2d; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
+<nav>
+  {% if user.is_authenticated %}
+    <a href="{% url 'the_pawject:perfil' %}">Mi perfil</a>
+    <a href="{% url 'the_pawject:logout' %}">Cerrar sesión</a>
+  {% else %}
+    <a href="{% url 'the_pawject:login' %}">Ingresar</a>
+    <a href="{% url 'the_pawject:registro' %}">Registrarme</a>
+  {% endif %}
+</nav>
 
-    <label for="{{ form.nombre.id_for_label }}">Nombre</label>
-    {{ form.nombre }}
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
 
-    <label for="id_direccion">Dirección</label>
-    <!-- Campo para autocompletar -->
-    <input type="text" id="id_direccion" name="direccion" />
+  <label for="{{ form.nombre.id_for_label }}">Nombre</label>
+  {{ form.nombre }}
+  {{ form.nombre.errors }}
 
-    <label for="{{ form.localidad.id_for_label }}">Localidad</label>
-    {{ form.localidad }}
+  <label for="id_direccion">Dirección</label>
+  <input type="text" id="id_direccion" name="direccion" />
+  <!-- Si usás {{ form.direccion }} eliminá esta línea -->
 
-    <label for="{{ form.capacidad.id_for_label }}">Capacidad</label>
-    {{ form.capacidad }}
+  <label for="{{ form.localidad.id_for_label }}">Localidad</label>
+  {{ form.localidad }}
+  {{ form.localidad.errors }}
 
-    <button type="submit">Crear Refugio</button>
-  </form>
+  <label for="{{ form.capacidad.id_for_label }}">Capacidad</label>
+  {{ form.capacidad }}
+  {{ form.capacidad.errors }}
 
-  <script>
-    function initAutocomplete() {
-      const input = document.getElementById('id_direccion');
+  <button type="submit">Crear Refugio</button>
+</form>
+
+<script>
+  function initAutocomplete() {
+    const input = document.getElementById('id_direccion');
+    if (input) {
       const autocomplete = new google.maps.places.Autocomplete(input, {
         types: ['address'],
         componentRestrictions: { country: "ar" }
       });
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>

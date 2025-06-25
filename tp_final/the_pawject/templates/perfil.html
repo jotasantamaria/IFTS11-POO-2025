@@ -3,20 +3,65 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>PAWJECT!</title>
+  <title>PAWJECT! - Perfil</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
+  <nav>
+    <a href="{% url 'the_pawject:landing' %}">Inicio</a>
+    <a href="{% url 'the_pawject:buscar_animales' %}">Buscar animales</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'the_pawject:perfil' %}">Mi perfil</a>
+      <a href="{% url 'the_pawject:logout' %}">Cerrar sesión</a>
+    {% else %}
+      <a href="{% url 'the_pawject:login' %}">Ingresar</a>
+      <a href="{% url 'the_pawject:registro' %}">Registrarme</a>
+    {% endif %}
+  </nav>
+
   <main class="form-container">
-    <h1>Hola, {{ user.username }}</h1>
+    {% if user.is_authenticated %}
+      <h1>Hola, {{ user.username }}</h1>
+      <p>Correo: {{ user.email }}</p>
 
-    <p>Correo: {{ user.email }}</p>
-    <p>Nombre: {{ user.first_name }} {{ user.last_name }}</p>
+      {% if messages %}
+        {% for message in messages %}
+          <p class="alert">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
 
-    <p><a href="{% url 'the_pawject:logout' %}">Cerrar sesión</a></p>
+      <h2>Preferencias de adopción</h2>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <label for="{{ form.especie.id_for_label }}">Especie:</label>
+        {{ form.especie }}
+
+        <label for="{{ form.tamano.id_for_label }}">Tamaño:</label>
+        {{ form.tamano }}
+
+        <label for="{{ form.sexo.id_for_label }}">Sexo:</label>
+        {{ form.sexo }}
+
+        <label for="{{ form.pelaje.id_for_label }}">Pelaje:</label>
+        {{ form.pelaje }}
+
+        <label for="{{ form.color.id_for_label }}">Color:</label>
+        {{ form.color }}
+
+        <label for="{{ form.estado_salud.id_for_label }}">Estado de salud:</label>
+        {{ form.estado_salud }}
+
+        <label for="{{ form.temperamento.id_for_label }}">Temperamento:</label>
+        {{ form.temperamento }}
+
+        <br>
+        <button type="submit">Guardar preferencias</button>
+      </form>
+    {% endif %}
   </main>
 
 </body>
 </html>
-

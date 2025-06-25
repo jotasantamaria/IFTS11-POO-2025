@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Formulario Refugio - Adopción Animal</title>
 
-  <!-- Fuentes -->
-  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}"></script>
+  <!-- api de google -->
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}"></script>/script>
 
   <style>
-    /* Reset básico */
+   
     * {
       box-sizing: border-box;
     }
@@ -32,7 +32,7 @@
     }
 
     header {
-      border-bottom: 1px solid #e0b089; /* acento cálido */
+      border-bottom: 1px solid #e0b089; 
       font-family: 'Playfair Display', serif;
       font-weight: 700;
       font-size: 1.6rem;
@@ -124,6 +124,17 @@
   Adopción Animal - Gestión de Refugios
 </header>
 
+<nav style="padding: 1rem; background: #fdf6f3; text-align: center;">
+  {% if user.is_authenticated %}
+    <a href="{% url 'the_pawject:perfil' %}" style="margin-right: 1rem;">Mi perfil</a>
+    <a href="{% url 'the_pawject:logout' %}">Cerrar sesión</a>
+  {% else %}
+    <a href="{% url 'the_pawject:login' %}" style="margin-right: 1rem;">Ingresar</a>
+    <a href="{% url 'the_pawject:registro' %}">Registrarme</a>
+  {% endif %}
+</nav>
+
+
 <main>
   <h1>Formulario Refugio</h1>
   <form id="refugio-form">
@@ -155,4 +166,9 @@
 </main>
 
 <footer>
-  &copy; 2025 Adopción Animal. Lorem ipsum dolor sit amet, consectetur adipisci
+  &copy; 2025 Adopción Animal. Todos los derechos reservados.
+</footer>
+
+</body>
+</html>
+

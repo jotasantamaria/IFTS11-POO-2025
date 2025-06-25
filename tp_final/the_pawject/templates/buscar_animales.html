@@ -6,6 +6,16 @@
   <title>PAWJECT!</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+<nav>
+  {% if user.is_authenticated %}
+    <a href="{% url 'the_pawject:perfil' %}">Mi perfil</a>
+    <a href="{% url 'the_pawject:logout' %}">Cerrar sesión</a>
+  {% else %}
+    <a href="{% url 'the_pawject:login' %}">Ingresar</a>
+    <a href="{% url 'the_pawject:registro' %}">Registrarme</a>
+  {% endif %}
+</nav>
+
 
 <form method="get">
   <label>Refugio:</label>

@@ -3,13 +3,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>PAWJECT!</title>
+  <title>PAWJECT! - Ingresar</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
   <main class="form-container">
     <h1>Ingresar</h1>
+
+    {% if messages %}
+      {% for message in messages %}
+        <p class="alert">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
 
     <form method="post" novalidate>
       {% csrf_token %}
