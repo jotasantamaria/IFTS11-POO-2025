@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Refugio, Animal, Usuario, HogarTransito, FotoAnimal, FotoRefugio, HorarioAtencion
+from .models import Refugio, Animal, Usuario, HogarTransito, FotoAnimal, FotoRefugio, HorarioAtencion, HorarioAtencionHogar
 
 class FotoAnimalInline(admin.TabularInline):  
     model = FotoAnimal
@@ -20,8 +20,15 @@ class HorarioAtencionInline(admin.TabularInline):
 class RefugioAdmin(admin.ModelAdmin):
     inlines = [FotoRefugioInline, HorarioAtencionInline]
 
+class HorarioAtencionHogarInline(admin.TabularInline):
+    model = HorarioAtencionHogar
+    extra = 1
+
+@admin.register(HogarTransito)
+class HogarTransitoAdmin(admin.ModelAdmin):
+    inlines = [HorarioAtencionHogarInline]
+
 admin.site.register(Animal, AnimalAdmin)
 admin.site.register(Refugio, RefugioAdmin)
 admin.site.register(Usuario)
-admin.site.register(HogarTransito)
 admin.site.register(FotoRefugio)

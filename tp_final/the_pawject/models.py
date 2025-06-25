@@ -66,8 +66,6 @@ class HogarTransito(models.Model):
     telefono = models.CharField(max_length=30, blank=True)
     capacidad = models.IntegerField()
     animales = models.ManyToManyField('Animal', blank=True)
-    dias_atencion = models.CharField(max_length=100, blank=True)
-    horarios_atencion = models.CharField(max_length=100, blank=True)
 
     def animales_en_hogar(self):
         return self.animales.count()
@@ -78,6 +76,13 @@ class HogarTransito(models.Model):
     def __str__(self):
         return self.nombre
 
+class HorarioAtencionHogar(models.Model):
+    hogar = models.ForeignKey(HogarTransito, related_name='horarios', on_delete=models.CASCADE)
+    dia = models.CharField(max_length=20, choices=DIAS_SEMANA)
+    horario = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.dia}: {self.horario}"
 
 class Animal(models.Model):
     ESPECIE_CHOICES = [

@@ -88,7 +88,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
@@ -100,3 +100,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
 print("GOOGLE_API_KEY env var:", os.getenv("GOOGLE_API_KEY"))
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+

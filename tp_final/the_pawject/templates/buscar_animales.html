@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PAWJECT!</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<form method="get">
+  <label>Refugio:</label>
+  <select name="refugio">
+    <option value="">Todos</option>
+    {% for r in refugios %}
+      <option value="{{ r.id }}" {% if filtros.refugio == r.id|stringformat:"s" %}selected{% endif %}>{{ r.nombre }}</option>
+    {% endfor %}
+  </select>
+
+  <label>Especie:</label>
+  <select name="especie">
+    <option value="">Todos</option>
+    <option value="perro" {% if filtros.especie == 'perro' %}selected{% endif %}>Perro</option>
+    <option value="gato" {% if filtros.especie == 'gato' %}selected{% endif %}>Gato</option>
+  </select>
+
+  <label>Tamaño:</label>
+  <select name="tamano">
+    <option value="">Todos</option>
+    <option value="pequeño" {% if filtros.tamano == 'pequeño' %}selected{% endif %}>Pequeño</option>
+    <option value="mediano" {% if filtros.tamano == 'mediano' %}selected{% endif %}>Mediano</option>
+    <option value="grande" {% if filtros.tamano == 'grande' %}selected{% endif %}>Grande</option>
+  </select>
+
+  <button type="submit">Buscar</button>
+</form>
+
+<h2>Animales disponibles:</h2>
+<ul>
+  {% for animal in animales %}
+    <li>{{ animal.nombre }} - {{ animal.especie }} - {{ animal.tamaño }} - Refugio: {{ animal.refugio.nombre }}</li>
+  {% empty %}
+    <li>No se encontraron animales con esos filtros.</li>
+  {% endfor %}
+</ul>

@@ -16,3 +16,7 @@ class UsuarioForm(forms.ModelForm):
                 'placeholder': 'Ej. Av. Siempreviva 742'
             }),
         }
+from django.contrib.auth.forms import AuthenticationForm
+
+class LoginUsuarioForm(AuthenticationForm):
+    pass 

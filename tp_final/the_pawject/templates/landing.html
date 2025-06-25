@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PAWJECT!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>PAWJECT!</h1>
+    <p class="subtitle">Adopción Animal en Red</p>
+  </header>
+
+  <section class="carousel-section">
+    <h2>Fotos destacadas</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        {% for url in fotos_refugios %}
+          <div class="swiper-slide">
+            <img src="{{ url }}" alt="Foto refugio" />
+            <p class="caption">Refugio</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <section class="search-section">
+    <h2>Buscar animales para adoptar</h2>
+    <form method="get" class="search-form">
+      <label for="refugio">Refugio:</label>
+      <select id="refugio" name="refugio">
+        <option value="">Todos</option>
+        {% for r in refugios %}
+          <option value="{{ r.id }}" {% if filtros.refugio == r.id|stringformat:"s" %}selected{% endif %}>{{ r.nombre }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="especie">Especie:</label>
+      <select id="especie" name="especie">
+        <option value="">Todos</option>
+        <option value="perro" {% if filtros.especie == 'perro' %}selected{% endif %}>Perro</option>
+        <option value="gato" {% if filtros.especie == 'gato' %}selected{% endif %}>Gato</option>
+      </select>
+
+      <label for="tamano">Tamaño:</label>
+      <select id="tamano" name="tamano">
+        <option value="">Todos</option>
+        <option value="pequeño" {% if filtros.tamano == 'pequeño' %}selected{% endif %}>Pequeño</option>
+        <option value="mediano" {% if filtros.tamano == 'mediano' %}selected{% endif %}>Mediano</option>
+        <option value="grande" {% if filtros.tamano == 'grande' %}selected{% endif %}>Grande</option>
+      </select>
+
+      <button type="submit">Buscar</button>
+    </form>
+
+    <h3>Animales disponibles</h3>
+    <ul class="animal-list">
+      {% for animal in animales %}
+        <li class="animal-item">
+          {% if animal.fotos.exists %}
+            <img src="{{ animal.fotos.first().imagen.url }}" alt="Foto de {{ animal.nombre }}" class="animal-thumb" />
+          {% else %}
+            <div class="animal-thumb placeholder">Sin foto</div>
+          {% endif %}
+          <div class="animal-info">
+            <strong>{{ animal.nombre }}</strong> - {{ animal.especie }} - {{ animal.tamaño }}<br />
+            Refugio: {{ animal.refugio.nombre }}
+          </div>
+        </li>
+      {% empty %}
+        <li>No se encontraron animales con esos filtros.</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="{% static 'js/carousel.js' %}"></script>
+
+</body>
+</html>

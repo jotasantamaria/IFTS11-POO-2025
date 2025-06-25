@@ -1,0 +1,231 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Georgia", serif;
+  margin: 0;
+  background-color: #f7f5f2;
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+.header {
+  background-color: #fff8f0;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #d8cfc2;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: #7a4f24;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-top: 0.3rem;
+  color: #b88856;
+  font-style: italic;
+}
+
+.carousel-section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgb(122 79 36 / 0.25);
+  background: white;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-slide img {
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #7a4f24;
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+}
+
+.search-section {
+  max-width: 700px;
+  margin: 3rem auto;
+  background: white;
+  padding: 1.8rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgb(122 79 36 / 0.1);
+}
+
+.search-section h2 {
+  text-align: center;
+  font-weight: 700;
+  color: #7a4f24;
+  margin-bottom: 1.5rem;
+  font-family: "Georgia", serif;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #a07a45;
+  font-family: "Georgia", serif;
+}
+
+.search-form select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #d9cbb7;
+  font-size: 1rem;
+  font-family: "Georgia", serif;
+  min-width: 120px;
+}
+
+.search-form button {
+  background-color: #7a4f24;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 130px;
+}
+
+.search-form button:hover {
+  background-color: #b88856;
+}
+
+.animal-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.animal-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #ddd3c9;
+  padding: 0.8rem 0;
+}
+
+.animal-thumb {
+  width: 100px;
+  height: 70px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgb(122 79 36 / 0.2);
+}
+
+.animal-thumb.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0e9df;
+  color: #7a4f24;
+  font-size: 0.9rem;
+  font-style: italic;
+  border: 2px dashed #b88856;
+  width: 100px;
+  height: 70px;
+  border-radius: 6px;
+}
+
+.animal-info {
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+  color: #5b4a2f;
+}
+
+
+.form-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgb(122 79 36 / 0.25);
+  font-family: "Georgia", serif;
+  color: #4a4a4a;
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #7a4f24;
+}
+
+.form-container label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #a07a45;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.3rem;
+  border: 1px solid #d9cbb7;
+  border-radius: 6px;
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+  color: #4a4a4a;
+}
+
+.form-container button {
+  margin-top: 2rem;
+  background-color: #7a4f24;
+  color: white;
+  border: none;
+  padding: 0.8rem 0;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #b88856;
+}
+
+.error {
+  color: #a94442;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}

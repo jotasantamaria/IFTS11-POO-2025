@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PAWJECT!</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+  <main class="form-container">
+    <h1>Registro de Usuario</h1>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+          <small>{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <div class="error">{{ error }}</div>
+        {% endfor %}
+      {% endfor %}
+
+      <button type="submit">Crear Cuenta</button>
+    </form>
+
+    <p>¿Ya tenés cuenta? <a href="{% url 'the_pawject:login' %}">Ingresá aquí</a>.</p>
+  </main>
+
+</body>
+</html>

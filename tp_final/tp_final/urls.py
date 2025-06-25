@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('usuarios/', include('the_pawject.urls')),  # esta línea carga las rutas desde the_pawject
+    path('', include('the_pawject.urls')),  # acá cargo las rutas desde the_pawject pero pongo la landing como raíz
 ]

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PAWJECT!</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+  <main class="form-container">
+    <h1>Hola, {{ user.username }}</h1>
+
+    <p>Correo: {{ user.email }}</p>
+    <p>Nombre: {{ user.first_name }} {{ user.last_name }}</p>
+
+    <p><a href="{% url 'the_pawject:logout' %}">Cerrar sesión</a></p>
+  </main>
+
+</body>
+</html>
+
