@@ -25,18 +25,40 @@ class Refugio(models.Model):
     sitio_web = models.URLField(blank=True, null=True)
     email_contacto = models.EmailField(blank=True, null=True)
     telefono_contacto = models.CharField(max_length=30, blank=True, null=True)
+    dias_atencion = models.CharField(max_length=100, blank=True)
+    horarios_atencion = models.CharField(max_length=100, blank=True)
+    ubicaciones_adicionales = models.TextField(blank=True)
+    notas = models.TextField(blank=True)
+
 
     def __str__(self):
         return self.nombre
+    def animales_en_refugio(self):
+        return self.animales.count() # contador de animales en le refugio 
+    def plazas_disponibles(self):
+        return self.capacidad - self.animales_en_refugio() # diferencia entre la capacidad del refugio y el contador animales
 
+class Sucursal(models.Model):
+    refugio = models.ForeignKey(Refugio, on_delete=models.CASCADE, related_name='sucursales')
+    nombre = models.CharField(max_length=100)
+    direccion = models.CharField(max_length=255)
 
+    def __str__(self):
+        return f"{self.nombre} ({self.direccion})"
+    
 class HogarTransito(models.Model):
     nombre = models.CharField(max_length=100)
     direccion = models.CharField(max_length=200)
     localidad = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=30, blank=True)
     capacidad = models.IntegerField()
     animales = models.ManyToManyField('Animal', blank=True)
+    dias_atencion = models.CharField(max_length=100, blank=True)
+    horarios_atencion = models.CharField(max_length=100, blank=True)
 
+    def animales_en_hogar(self):
+        return self.animales.count()
+    
     def plazas_disponibles(self):
         return self.capacidad - self.animales.count()
 
@@ -142,7 +164,7 @@ class Animal(models.Model):
     marketing = models.TextField(blank=True)
     pelaje = models.CharField(max_length=20, choices=PELAJE_CHOICES, blank=True, null=True)
     color = models.CharField(max_length=20, choices=COLOR_CHOICES, blank=True, null=True)
-    refugio = models.ForeignKey(Refugio, on_delete=models.SET_NULL, null=True, blank=True)
+    refugio = models.ForeignKey('Refugio', on_delete=models.SET_NULL, null=True, blank=True, related_name='animales')
     fecha_ingreso = models.DateField(null=True, blank=True)
     esterilizado = models.BooleanField(default=False)
     desparasitado = models.BooleanField(default=False)
