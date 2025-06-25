@@ -25,8 +25,6 @@ class Refugio(models.Model):
     sitio_web = models.URLField(blank=True, null=True)
     email_contacto = models.EmailField(blank=True, null=True)
     telefono_contacto = models.CharField(max_length=30, blank=True, null=True)
-    dias_atencion = models.CharField(max_length=100, blank=True)
-    horarios_atencion = models.CharField(max_length=100, blank=True)
     ubicaciones_adicionales = models.TextField(blank=True)
     notas = models.TextField(blank=True)
 
@@ -37,6 +35,21 @@ class Refugio(models.Model):
         return self.animales.count() # contador de animales en le refugio 
     def plazas_disponibles(self):
         return self.capacidad - self.animales_en_refugio() # diferencia entre la capacidad del refugio y el contador animales
+
+DIAS_SEMANA = [
+    ('Lunes a Viernes', 'Lunes a Viernes'),
+    ('Sábados', 'Sábados'),
+    ('Domingos', 'Domingos'),
+    ('Feriados', 'Feriados'),
+]
+
+class HorarioAtencion(models.Model):
+    refugio = models.ForeignKey(Refugio, related_name='horarios', on_delete=models.CASCADE)
+    dia = models.CharField(max_length=20, choices=DIAS_SEMANA)
+    horario = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.dia}: {self.horario}"
 
 class Sucursal(models.Model):
     refugio = models.ForeignKey(Refugio, on_delete=models.CASCADE, related_name='sucursales')
