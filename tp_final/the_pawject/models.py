@@ -22,6 +22,9 @@ class Refugio(models.Model):
     capacidad = models.IntegerField()
     latitud = models.FloatField(blank=True, null=True)
     longitud = models.FloatField(blank=True, null=True)
+    sitio_web = models.URLField(blank=True, null=True)
+    email_contacto = models.EmailField(blank=True, null=True)
+    telefono_contacto = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return self.nombre
